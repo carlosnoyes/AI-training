@@ -313,42 +313,160 @@
             display: none !important;
         }
 
-        /* Featured Concept */
-        .featured-concept {
-            background: var(--ink);
-            color: var(--paper);
-            padding: 4rem;
-            margin: 4rem 0;
+        /* Override concept-card hover when it's a flip card */
+        .concept-card.flip-card {
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .concept-card.flip-card:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .concept-card.flip-card::before {
+            display: none;
+        }
+
+        /* Flip Card */
+        .flip-card {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
             position: relative;
+            width: 100%;
+            min-height: 180px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 2rem;
             overflow: hidden;
         }
 
-        .featured-concept::after {
+        .flip-card-front {
+            z-index: 2;
+        }
+
+        /* Folded corner hint */
+        .flip-card-front::after {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 60%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(196, 69, 54, 0.3) 0%, transparent 60%);
-            pointer-events: none;
+            bottom: 0;
+            right: 0;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, transparent 50%, var(--border) 50%, rgba(196, 69, 54, 0.15) 100%);
+            transition: width 0.25s ease, height 0.25s ease, background 0.25s ease;
+        }
+
+        .flip-card:hover .flip-card-front::after {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, transparent 50%, var(--accent) 50%, rgba(196, 69, 54, 0.3) 100%);
+        }
+
+        /* Hover lift hint */
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(-4deg);
+        }
+
+        .flip-card.flipped:hover .flip-card-inner {
+            transform: rotateY(176deg);
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: var(--highlight);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 4px solid var(--accent);
+        }
+
+        .flip-card-back .concept-example {
+            background: transparent;
+            border-left: none;
+            padding: 0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .flip-card-back .flip-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Accent bar on front hover */
+        .flip-card .flip-card-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .flip-card:hover .flip-card-front::before {
+            opacity: 1;
+        }
+
+        /* Featured Concept */
+        .featured-concept {
+            background: var(--highlight);
+            color: var(--ink);
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--accent);
+        }
+
+        .featured-concept::after {
+            content: none;
         }
 
         .featured-concept .concept-name {
-            color: var(--paper);
-            font-size: 2rem;
+            color: var(--ink);
+            font-size: 1.8rem;
         }
 
         .featured-concept .concept-description {
-            color: rgba(248, 246, 241, 0.8);
+            color: var(--muted);
             font-size: 1.1rem;
             max-width: 700px;
         }
 
         .featured-concept .concept-example {
-            background: rgba(248, 246, 241, 0.1);
+            background: rgba(255, 255, 255, 0.6);
             border-left-color: var(--accent);
-            color: var(--paper);
+            color: var(--ink);
         }
 
         /* Two Column Layout */
@@ -496,11 +614,6 @@
         }
 
         @media print {
-            :root {
-                --print-page-width: 7.5in;
-                --print-page-height: 10in;
-            }
-
             * {
                 animation: none !important;
                 transition: none !important;
@@ -510,7 +623,8 @@
             body {
                 background: #ffffff;
                 color: #000000;
-                font-size: 11px;
+                font-size: 18px;
+                line-height: 1.35;
             }
 
             nav,
@@ -525,6 +639,7 @@
                 padding: 0;
             }
 
+            /* Each section = one page */
             section {
                 break-after: page;
                 page-break-after: always;
@@ -532,14 +647,14 @@
                 page-break-inside: avoid;
                 box-sizing: border-box;
                 margin: 0;
-                padding: 0.2in 0.25in;
-                width: var(--print-page-width);
-                max-width: var(--print-page-width);
-                min-height: var(--print-page-height);
+                padding: 0;
+                width: 7.5in;
+                max-width: 7.5in;
+                height: 10in;
+                max-height: 10in;
                 overflow: hidden;
-                transform-origin: top left;
-                transform: scale(var(--print-scale, 1));
-                height: var(--print-scaled-height, auto);
+                display: flex;
+                flex-direction: column;
             }
 
             section::before {
@@ -551,67 +666,171 @@
                 page-break-after: auto;
             }
 
+            /* Section header */
             .section-header {
-                margin-bottom: 0.2in;
-                padding-bottom: 0.08in;
+                margin-bottom: 0.15in;
+                padding-bottom: 0.06in;
+                flex-shrink: 0;
             }
 
             .section-number {
-                font-size: 1.3rem;
-            }
-
-            .section-title {
                 font-size: 1.2rem;
             }
 
-            .concepts-grid,
-            .two-col {
-                gap: 0.12in;
+            .section-title {
+                font-size: 1.1rem;
             }
 
+            /* Grids */
+            .concepts-grid,
+            .two-col {
+                gap: 0.1in;
+                flex: 1;
+            }
+
+            .two-col {
+                align-content: start;
+            }
+
+            /* Cards */
             .concept-card,
+            .flip-card {
+                padding: 0;
+                cursor: default;
+            }
+
+            .concept-card.flip-card {
+                background: transparent;
+                border: none;
+            }
+
+            /* Flatten flip cards — show front and back stacked */
+            .flip-card-inner {
+                transform: none !important;
+                transform-style: flat;
+                min-height: auto !important;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .flip-card-front,
+            .flip-card-back {
+                position: relative;
+                backface-visibility: visible;
+                -webkit-backface-visibility: visible;
+                transform: none !important;
+                height: auto;
+                padding: 0.1in;
+                overflow: visible;
+                border: none;
+                border-left: 2px solid var(--accent);
+            }
+
+            .flip-card-front::before,
+            .flip-card-front::after {
+                display: none;
+            }
+
+            .flip-card-back {
+                background: var(--highlight);
+                border-left: 2px solid var(--accent);
+                margin-top: 0;
+                padding: 0.06in 0.1in;
+            }
+
+            .flip-card-back .flip-label {
+                font-size: 0.5rem;
+                margin-bottom: 0.02in;
+            }
+
+            .flip-card-back .concept-example {
+                font-size: 0.65rem;
+                line-height: 1.3;
+            }
+
+            /* Principles & featured */
             .principles,
             .featured-concept {
-                padding: 0.12in;
+                padding: 0.1in;
                 margin: 0;
+            }
+
+            .featured-concept {
+                margin-bottom: 0.12in;
+                padding: 0.15in;
+                flex-shrink: 0;
+            }
+
+            .featured-concept .concept-name {
+                font-size: 1rem;
+                margin-bottom: 0.04in;
+            }
+
+            .featured-concept .concept-description {
+                font-size: 0.7rem;
+                line-height: 1.3;
+            }
+
+            .featured-concept .concept-example {
+                font-size: 0.65rem;
+                line-height: 1.3;
+                margin-top: 0.06in;
+                padding: 0.05in;
             }
 
             .principle-item {
                 gap: 0.1in;
-                padding: 0.08in 0;
+                padding: 0.06in 0;
             }
 
             .principle-number {
-                font-size: 1rem;
-                min-width: 0.25in;
+                font-size: 0.9rem;
+                min-width: 0.2in;
             }
 
+            /* Text sizing */
             .concept-name,
             .principle-content h3 {
-                font-size: 0.95rem;
-                margin-bottom: 0.04in;
+                font-size: 0.85rem;
+                margin-bottom: 0.02in;
             }
 
             .concept-description,
-            .principle-content p,
+            .principle-content p {
+                font-size: 0.65rem;
+                line-height: 1.3;
+            }
+
             .concept-example {
-                font-size: 0.72rem;
-                line-height: 1.25;
+                font-size: 0.65rem;
+                line-height: 1.3;
             }
 
             .category-badge {
-                font-size: 0.5rem;
-                margin-bottom: 0.04in;
-                padding: 0.03in 0.06in;
+                font-size: 0.45rem;
+                margin-bottom: 0.03in;
+                padding: 0.02in 0.05in;
             }
 
             .tip {
-                margin: 0.12in 0;
-                padding: 0.1in;
+                margin: 0.08in 0;
+                padding: 0.08in;
+                flex-shrink: 0;
             }
 
             .tip::before {
                 display: none;
+            }
+
+            .tip p {
+                font-size: 0.65rem;
+                line-height: 1.3;
+            }
+
+            /* Reveal elements must be visible in print */
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
     </style>
@@ -647,7 +866,7 @@
     <!-- Section 1: General Tips -->
     <section id="general">
         <div class="section-header reveal">
-            <span class="section-number">01</span>
+            <span class="section-number">1</span>
             <h2 class="section-title">General Tips</h2>
         </div>
 
@@ -655,7 +874,7 @@
             
             <h3 class="concept-name">The Human-AI Sandwich</h3>
             <p class="concept-description">The Human does the first 10% - framing the problem<br>The AI does the middle 80% - the heavy lifting<br>The Human does the last 10% - final review and edits</p>
-            <div class="concept-example">Never submit something that you haven't read entirely. Let's avoid AI-Slop.</div>
+            <div class="concept-example">Never submit something that you haven't read entirely. Let's avoid AI-slop.</div>
         </div>
 
         <div class="concepts-grid two-col">
@@ -688,7 +907,7 @@
     <!-- Section 2: Context Packaging -->
     <section id="context">
         <div class="section-header reveal">
-            <span class="section-number">02</span>
+            <span class="section-number">2</span>
             <h2 class="section-title">Context Packaging</h2>
         </div>
 
@@ -734,7 +953,7 @@
     <!-- Section 3: Output Formatting -->
     <section id="output">
         <div class="section-header reveal">
-            <span class="section-number">03</span>
+            <span class="section-number">3</span>
             <h2 class="section-title">Output Formatting & Structure</h2>
         </div>
 
@@ -756,7 +975,7 @@
     <!-- Section 4: Iteration -->
     <section id="iteration">
         <div class="section-header reveal">
-            <span class="section-number">04</span>
+            <span class="section-number">4</span>
             <h2 class="section-title">Iteration & Refinement</h2>
         </div>
 
@@ -794,13 +1013,13 @@
     <!-- Section 5: Thoughtful Responses + Maximum Intelligence -->
     <section id="thinking">
         <div class="section-header reveal">
-            <span class="section-number">05</span>
+            <span class="section-number">5</span>
             <h2 class="section-title">Maximum Intelligence</h2>
         </div>
 
         <div class="featured-concept reveal">
             
-            <h3 class="concept-name">Think Very Long and Hard</h3>
+            <h3 class="concept-name">"Think Very Long and Hard"</h3>
             <p class="concept-description">Adding this phrase triggers extra computation on reasoning models. Use it for complex problems that require deep logical analysis.</p>
             <div class="concept-example">"Think very long and hard and design an algorithm to allocate budget across channels under these constraints and justify your approach."</div>
         </div>
@@ -847,7 +1066,7 @@
     <!-- Section 6: Analysis -->
     <section id="analysis">
         <div class="section-header reveal">
-            <span class="section-number">06</span>
+            <span class="section-number">6</span>
             <h2 class="section-title">Analysis</h2>
         </div>
 
@@ -893,7 +1112,7 @@
     <!-- Section 7: Prompt Library -->
     <section id="prompts">
         <div class="section-header reveal">
-            <span class="section-number">07</span>
+            <span class="section-number">7</span>
             <h2 class="section-title">Prompt Library</h2>
         </div>
 
@@ -925,51 +1144,50 @@
     <!-- Section 8: Quality Control -->
     <section id="quality">
         <div class="section-header reveal">
-            <span class="section-number">08</span>
+            <span class="section-number">8</span>
             <h2 class="section-title">Quality Control & Verification</h2>
+        </div>
+
+        <div class="featured-concept reveal">
+            <h3 class="concept-name">Beware of Hallucinations</h3>
+            <p class="concept-description">AI models can confidently produce incorrect information, including invented facts, fake citations, non-existent URLs, or fabricated statistics. More advanced models include techniques to reduce this behavior, so risk varies by model, but human judgment remains essential.</p>
+            <div class="concept-example">With experience, you'll get better at recognizing where hallucinations are most likely and when extra scrutiny is needed.</div>
         </div>
 
                 <div class="principles reveal">
             <div class="principle-item">
                 <span class="principle-number">1</span>
                 <div class="principle-content">
-                    <h3>Add Verification Instructions</h3>
-                    <p>Explicitly tell the model to flag uncertainty or speculation.</p>
-                </div>
-            </div>
-            <div class="principle-item">
-                <span class="principle-number">2</span>
-                <div class="principle-content">
                     <h3>Require Checkable Sources</h3>
                     <p>Ask the AI to provide verifiable sources for factual claims. Note: Always check them - sources can be hallucinated.</p>
                 </div>
             </div>
             <div class="principle-item">
-                <span class="principle-number">3</span>
+                <span class="principle-number">2</span>
                 <div class="principle-content">
-                    <h3>Self-Check for Errors</h3>
+                    <h3>Have the AI Check for Errors</h3>
                     <p>Ask the model to check its own answers for accuracy. Reasoning models often do this automatically with "Think very long and hard."</p>
                 </div>
             </div>
             <div class="principle-item">
-                <span class="principle-number">4</span>
-                <div class="principle-content">
-                    <h3>Clear Chat History</h3>
-                    <p>AI can be biased by prior chat history. Start a new chat if quality seems to be decreasing.</p>
-                </div>
-            </div>
-            <div class="principle-item">
-                <span class="principle-number">5</span>
+                <span class="principle-number">3</span>
                 <div class="principle-content">
                     <h3>Sanity-Check Math</h3>
                     <p>Double-check all numerical and statistical output, especially when the model is not in reasoning mode.</p>
                 </div>
             </div>
             <div class="principle-item">
-                <span class="principle-number">6</span>
+                <span class="principle-number">4</span>
                 <div class="principle-content">
-                    <h3>Validate Data Sources</h3>
-                    <p>Confirm that inputs are accurate and well-parsed, especially from messy or OCR'd sources.</p>
+                    <h3>Validate Data Inputs</h3>
+                    <p>Confirm that inputs are accurate and well-parsed, especially from PDFs and images.</p>
+                </div>
+            </div>
+            <div class="principle-item">
+                <span class="principle-number">5</span>
+                <div class="principle-content">
+                    <h3>Clear Chat History</h3>
+                    <p>AI can be biased by prior chat history. Start a new chat if quality seems to be decreasing.</p>
                 </div>
             </div>
         </div>
@@ -978,33 +1196,38 @@
     <!-- Section 9: Ethics -->
     <section id="ethics">
         <div class="section-header reveal">
-            <span class="section-number">09</span>
+            <span class="section-number">9</span>
             <h2 class="section-title">Safety, Ethics & Confidentiality</h2>
         </div>
 
-        <div class="concepts-grid two-col">
-            <div class="concept-card reveal">
-                <h3 class="concept-name">Avoid Plagiarism</h3>
-                <p class="concept-description">AI may mimic phrasing from training data. Always edit, add original thinking, and run checks where required.</p>
-                <div class="concept-example">"Use this article as inspiration, but write an original blog post in my voice and mention 3 places where I should add personal anecdotes."</div>
+        <div class="principles reveal">
+            <div class="principle-item">
+                <span class="principle-number">1</span>
+                <div class="principle-content">
+                    <h3>Avoid Plagiarism</h3>
+                    <p>AI may mimic phrasing from training data. Always edit, add original thinking, and run checks where required.</p>
+                </div>
             </div>
-
-            <div class="concept-card reveal">
-                <h3 class="concept-name">Remove Sensitive Data</h3>
-                <p class="concept-description">Avoid including personal, confidential, or regulated information unless you're in a compliant setup.</p>
-                <div class="concept-example">"Here is anonymized customer feedback (names and IDs removed). Analyze key themes and suggest product improvements."</div>
+            <div class="principle-item">
+                <span class="principle-number">2</span>
+                <div class="principle-content">
+                    <h3>Remove Sensitive Data</h3>
+                    <p>Avoid including personal, confidential, or regulated information unless you're in a compliant setup.</p>
+                </div>
             </div>
-
-            <div class="concept-card reveal">
-                <h3 class="concept-name">Disclose AI Assistance</h3>
-                <p class="concept-description">Be transparent about AI involvement where compliance, ethics, or expectations require it.</p>
-                <div class="concept-example">"Disclosure: This draft was developed with AI assistance and reviewed/edited by me for accuracy, tone, and final recommendations."</div>
+            <div class="principle-item">
+                <span class="principle-number">3</span>
+                <div class="principle-content">
+                    <h3>Disclose AI Assistance</h3>
+                    <p>Be transparent about AI involvement where compliance, ethics, or expectations require it.</p>
+                </div>
             </div>
-
-            <div class="concept-card reveal">
-                <h3 class="concept-name">Don't Delegate High-Risk Decisions</h3>
-                <p class="concept-description">Use AI for analysis and options, not final calls in legal, medical, financial, or HR decisions.</p>
-                <div class="concept-example">"Summarize the pros and cons of these contract clauses and list questions I should ask my lawyer before signing."</div>
+            <div class="principle-item">
+                <span class="principle-number">4</span>
+                <div class="principle-content">
+                    <h3>Don't Delegate High-Risk Decisions</h3>
+                    <p>Use AI for analysis and options, not final calls in legal, medical, financial, or HR decisions.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1078,34 +1301,94 @@
         window.addEventListener('load', refreshActiveNav);
         window.addEventListener('resize', refreshActiveNav);
 
-        // Scale each section to fit one Letter page when printing.
-        const printableSections = Array.from(document.querySelectorAll('section'));
+        // Convert concept-cards with examples into flip cards
+        document.querySelectorAll('.concept-card').forEach(card => {
+            const example = card.querySelector('.concept-example');
+            if (!example) return;
 
-        const resetPrintSizing = () => {
-            printableSections.forEach(section => {
-                section.style.removeProperty('--print-scale');
-                section.style.removeProperty('--print-scaled-height');
-            });
-        };
-
-        const fitSectionsToPrintPage = () => {
-            resetPrintSizing();
-
-            const pageHeightPx = 10 * 96;
-            printableSections.forEach(section => {
-                const rawHeight = section.scrollHeight;
-                if (!rawHeight) {
-                    return;
+            // Gather front content (everything except the example)
+            const frontChildren = [];
+            Array.from(card.children).forEach(child => {
+                if (!child.classList.contains('concept-example')) {
+                    frontChildren.push(child);
                 }
+            });
 
-                const scale = Math.min(1, pageHeightPx / rawHeight);
-                section.style.setProperty('--print-scale', scale.toFixed(4));
-                section.style.setProperty('--print-scaled-height', `${Math.ceil(rawHeight * scale)}px`);
+            // Build front
+            const front = document.createElement('div');
+            front.className = 'flip-card-front';
+            frontChildren.forEach(child => front.appendChild(child));
+
+            // Build back
+            const back = document.createElement('div');
+            back.className = 'flip-card-back';
+            const label = document.createElement('div');
+            label.className = 'flip-label';
+            label.textContent = 'Example';
+            back.appendChild(label);
+            back.appendChild(example);
+
+            // Build inner wrapper
+            const inner = document.createElement('div');
+            inner.className = 'flip-card-inner';
+            inner.appendChild(front);
+            inner.appendChild(back);
+
+            // Clear card and add structure
+            card.innerHTML = '';
+            card.appendChild(inner);
+            card.classList.add('flip-card');
+
+            // Click to flip
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
+        });
+
+        // Size all flip cards in the same grid container to the same height
+        const syncFlipCardHeights = () => {
+            // Reset all heights first so we can measure natural sizes
+            document.querySelectorAll('.flip-card .flip-card-inner').forEach(inner => {
+                inner.style.minHeight = '';
+            });
+
+            // Group flip cards by their parent grid container
+            const gridContainers = new Set();
+            document.querySelectorAll('.flip-card').forEach(card => {
+                gridContainers.add(card.parentElement);
+            });
+
+            gridContainers.forEach(container => {
+                const cards = container.querySelectorAll('.flip-card');
+                let maxHeight = 0;
+
+                // Measure the tallest face across all cards in this container
+                cards.forEach(card => {
+                    const inner = card.querySelector('.flip-card-inner');
+                    const front = card.querySelector('.flip-card-front');
+                    const back = card.querySelector('.flip-card-back');
+                    if (front && back) {
+                        maxHeight = Math.max(maxHeight, front.scrollHeight, back.scrollHeight);
+                    }
+                });
+
+                // Apply uniform height
+                cards.forEach(card => {
+                    const inner = card.querySelector('.flip-card-inner');
+                    if (inner) {
+                        inner.style.minHeight = maxHeight + 'px';
+                    }
+                });
             });
         };
 
-        window.addEventListener('beforeprint', fitSectionsToPrintPage);
-        window.addEventListener('afterprint', resetPrintSizing);
+        requestAnimationFrame(syncFlipCardHeights);
+        window.addEventListener('resize', syncFlipCardHeights);
+
+        // Ensure all reveal elements are visible before printing
+        window.addEventListener('beforeprint', () => {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        });
     </script>
 </body>
 </html>
