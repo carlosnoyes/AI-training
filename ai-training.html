@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering AI Prompts — A Guide to Getting More From AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #f8f6f1;
+            --accent: #c44536;
+            --muted: #6b6b6b;
+            --highlight: #f2e8cf;
+            --border: #d4d0c8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 18px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            width: 320px;
+            height: calc(100vh - 2rem);
+            overflow: hidden;
+            background: rgba(248, 246, 241, 0.95);
+            border: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.25rem;
+            display: flex;
+        }
+
+        nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            list-style: none;
+            flex: 1;
+            justify-content: space-evenly;
+        }
+
+        nav a {
+            display: block;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            line-height: 1.4;
+            border-left: 2px solid transparent;
+            padding-left: 0.7rem;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        body {
+            padding-left: 360px;
+        }
+
+        @media (max-width: 1024px) {
+            body {
+                padding-left: 0;
+                padding-top: 4.5rem;
+            }
+
+            nav {
+                top: 0;
+                left: 0;
+                right: 0;
+                width: auto;
+                max-height: none;
+                border-left: none;
+                border-right: none;
+                border-top: none;
+                border-bottom: 1px solid var(--border);
+                padding: 0.75rem 1rem;
+            }
+
+            nav ul {
+                flex-direction: row;
+                gap: 1rem;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 0.25rem;
+            }
+
+            nav a {
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                padding-left: 0;
+                padding-bottom: 0.15rem;
+            }
+
+            nav a:hover,
+            nav a.active {
+                border-bottom-color: var(--accent);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(196, 69, 54, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(242, 232, 207, 0.5) 0%, transparent 40%);
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-2%, 2%) rotate(1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        .scroll-hint svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Section Styles */
+        section {
+            position: relative;
+            isolation: isolate;
+            padding: 5.5rem 2rem;
+            max-width: 1200px;
+            margin: 2.25rem auto;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            inset: 1rem -1rem;
+            border: 1px solid rgba(196, 69, 54, 0.12);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(242, 232, 207, 0.35) 100%);
+            box-shadow: 0 14px 36px rgba(26, 26, 26, 0.05);
+            z-index: -1;
+        }
+
+        section:nth-of-type(even)::before {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(196, 69, 54, 0.06) 100%);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .section-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            color: var(--accent);
+            line-height: 1;
+            opacity: 0.7;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        /* Concept Cards */
+        .concepts-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .concept-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .concept-card:hover::before {
+            opacity: 1;
+        }
+
+        .concept-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--ink);
+        }
+
+        .concept-description {
+            color: var(--muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .concept-example {
+            background: var(--highlight);
+            padding: 1.25rem;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--accent);
+            font-style: italic;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        .concept-example::before {
+            content: none !important;
+            display: none !important;
+        }
+
+        /* Featured Concept */
+        .featured-concept {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 4rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-concept::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(196, 69, 54, 0.3) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .featured-concept .concept-name {
+            color: var(--paper);
+            font-size: 2rem;
+        }
+
+        .featured-concept .concept-description {
+            color: rgba(248, 246, 241, 0.8);
+            font-size: 1.1rem;
+            max-width: 700px;
+        }
+
+        .featured-concept .concept-example {
+            background: rgba(248, 246, 241, 0.1);
+            border-left-color: var(--accent);
+            color: var(--paper);
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Key Principles Section */
+        .principles {
+            background: white;
+            padding: 4rem;
+            margin: 4rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .principle-item {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .principle-item:last-child {
+            border-bottom: none;
+        }
+
+        .principle-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.5;
+            line-height: 1;
+            min-width: 60px;
+        }
+
+        .principle-content h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .principle-content p {
+            color: var(--muted);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: rgba(248, 246, 241, 0.6);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* Scroll-triggered animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Category Badge */
+        .category-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.3rem 0.7rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Tip callout */
+        .tip {
+            background: var(--highlight);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0;
+            position: relative;
+        }
+
+        .tip::before {
+            content: '💡';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 1.5rem;
+        }
+
+        .tip p {
+            font-size: 0.95rem;
+            color: var(--ink);
+        }
+
+
+
+        @page {
+            size: Letter portrait;
+            margin: 0.5in;
+        }
+
+        @media print {
+            :root {
+                --print-page-width: 7.5in;
+                --print-page-height: 10in;
+            }
+
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            html,
+            body {
+                background: #ffffff;
+                color: #000000;
+                font-size: 11px;
+            }
+
+            nav,
+            .hero,
+            .scroll-hint,
+            footer {
+                display: none !important;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            section {
+                break-after: page;
+                page-break-after: always;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0.2in 0.25in;
+                width: var(--print-page-width);
+                max-width: var(--print-page-width);
+                min-height: var(--print-page-height);
+                overflow: hidden;
+                transform-origin: top left;
+                transform: scale(var(--print-scale, 1));
+                height: var(--print-scaled-height, auto);
+            }
+
+            section::before {
+                display: none;
+            }
+
+            section:last-of-type {
+                break-after: auto;
+                page-break-after: auto;
+            }
+
+            .section-header {
+                margin-bottom: 0.2in;
+                padding-bottom: 0.08in;
+            }
+
+            .section-number {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .concepts-grid,
+            .two-col {
+                gap: 0.12in;
+            }
+
+            .concept-card,
+            .principles,
+            .featured-concept {
+                padding: 0.12in;
+                margin: 0;
+            }
+
+            .principle-item {
+                gap: 0.1in;
+                padding: 0.08in 0;
+            }
+
+            .principle-number {
+                font-size: 1rem;
+                min-width: 0.25in;
+            }
+
+            .concept-name,
+            .principle-content h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.04in;
+            }
+
+            .concept-description,
+            .principle-content p,
+            .concept-example {
+                font-size: 0.72rem;
+                line-height: 1.25;
+            }
+
+            .category-badge {
+                font-size: 0.5rem;
+                margin-bottom: 0.04in;
+                padding: 0.03in 0.06in;
+            }
+
+            .tip {
+                margin: 0.12in 0;
+                padding: 0.1in;
+            }
+
+            .tip::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#general">General Tips</a></li>
+            <li><a href="#context">Context Packaging</a></li>
+            <li><a href="#output">Output Formatting & Structure</a></li>
+            <li><a href="#iteration">Iteration & Refinement</a></li>
+            <li><a href="#thinking">Maximum Intelligence</a></li>
+            <li><a href="#analysis">Analysis</a></li>
+            <li><a href="#prompts">Prompt Library</a></li>
+            <li><a href="#quality">Quality Control & Verification</a></li>
+            <li><a href="#ethics">Safety, Ethics & Confidentiality</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Mastering <em>AI</em> Prompts</h1>
+            <p class="fade-in delay-2">A comprehensive guide to crafting better prompts, structuring context, and getting reliable, high-quality outputs from AI systems.</p>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll to explore</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Section 1: General Tips -->
+    <section id="general">
+        <div class="section-header reveal">
+            <span class="section-number">01</span>
+            <h2 class="section-title">General Tips</h2>
+        </div>
+
+        <div class="featured-concept reveal">
+            
+            <h3 class="concept-name">The Human-AI Sandwich</h3>
+            <p class="concept-description">The Human does the first 10% - framing the problem<br>The AI does the middle 80% - the heavy lifting<br>The Human does the last 10% - final review and edits</p>
+            <div class="concept-example">Never submit something that you haven't read entirely. Let's avoid AI-Slop.</div>
+        </div>
+
+        <div class="concepts-grid two-col">
+            <div class="concept-card reveal">
+                <h3 class="concept-name">The Parts of a Prompt</h3>
+                <p class="concept-description">Define a clear <strong>objective</strong>, provide <strong>context</strong>, offer <strong>motivation</strong>, explain the <strong>audience</strong>, give <strong>instructions</strong>, and specify the <strong>output</strong> format.</p>
+                <div class="concept-example">"You are an experienced product strategist. Summarize these meeting notes into actionable insights for non-technical executives. Output a concise bullet list focused on product and revenue topics, exclude HR, keep it under 200 words, and include action owner per bullet."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Let AI Become a Natural Partner</h3>
+                <p class="concept-description">Like you would reach for your phone to check for directions, you should reach for AI for anything related to <strong>Writing</strong>, <strong>Reasoning</strong>, <strong>Research</strong>, and <strong>Analysis</strong>.</p>
+                <div class="concept-example">Using <strong>Voice Mode</strong> or <strong>Voice to Text</strong> can make AI feel more organic.<br>Start AI chats immediately on your phone/watch, then continue them later from your computer.</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">AI as Skill Multiplier</h3>
+                <p class="concept-description">AI is better at expanding your existing capabilities than giving you completely new ones. Knowing what is possible and recognizing good outputs will help you to leverage AI effectively.</p>
+                <div class="concept-example">You can ask, "Write me a sales script". But if you cannot tell good from bad yourself, then the output is uncertain.</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">AI Skills Compound</h3>
+                <p class="concept-description">The more tools and techniques you know, the more creative you can be - and the more you will learn over time.</p>
+                <div class="concept-example">Help me research a complex topic.<br>Draft a presentation outline.<br>Generate images to go along the main sections.<br>Create the presentation using HTML or PowerPoint.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Context Packaging -->
+    <section id="context">
+        <div class="section-header reveal">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Context Packaging</h2>
+        </div>
+
+        <div class="concepts-grid two-col">
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Upload Files</h3>
+                <p class="concept-description">Provide original files (PDFs, CSVs, docs) so the model can pull details directly when needed.</p>
+                <div class="concept-example">"I've uploaded a 40-page research PDF. Use it as your only source to summarize the main findings in a one-page brief."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Context Formats</h3>
+                <p class="concept-description">Share the same context in different forms — text, screenshots, pasted tables — to improve understanding.</p>
+                <div class="concept-example">"Here's my spreadsheet pasted as text, and here is a screenshot of the first few rows to help you understand the structure."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Lots of Context</h3>
+                <p class="concept-description">When unsure what's needed, err on the side of giving more raw material: notes, transcripts, webpage dumps, screenshots.</p>
+                <div class="concept-example">"Here are my messy project notes and meeting transcripts. Please extract the main decisions, open questions, and owner for each action item."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Prune Irrelevant Information</h3>
+                <p class="concept-description">Remove obviously unrelated content so the model isn't distracted or misled by noise.</p>
+                <div class="concept-example">Remove unnecessary text/data that don't contribute to the current task.<br>Start a new chat when changing topics, or when there is too many distractions in the current conversation.</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Structure Context</h3>
+                <p class="concept-description">Organize inputs into labeled sections.</p>
+                <div class="concept-example">"GOAL: propose a launch plan for the next 30 days.<br>BACKGROUND: […]<br>CONSTRAINTS: […]<br>EXAMPLES: […]</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Pre-Process with AI</h3>
+                <p class="concept-description">First ask the model to summarize or reorganize large, messy inputs into compact, structured notes.</p>
+                <div class="concept-example">"Summarize these 20 pages into a concise outline."<br>Then, "Turn that outline into a 2-page strategy memo."</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Output Formatting -->
+    <section id="output">
+        <div class="section-header reveal">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Output Formatting & Structure</h2>
+        </div>
+
+        <div class="two-col">
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Define Output Structure</h3>
+                <p class="concept-description">Describe the exact fields and columns you want the model to return.</p>
+                <div class="concept-example">"Return a markdown table with these columns: 'Feature', 'User Segment', 'Value Proposition', 'Risk Level (Low/Med/High)'."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Provide Examples</h3>
+                <p class="concept-description">Show a model answer and tell the AI to follow that style and structure. Note: The model can sometimes copy examples too closely.</p>
+                <div class="concept-example">"Here is an example performance review paragraph. Using this style and tone, write a review for an engineer with the following achievements: …"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Iteration -->
+    <section id="iteration">
+        <div class="section-header reveal">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Iteration & Refinement</h2>
+        </div>
+
+        <div class="tip reveal">
+            <p><strong>The key insight:</strong> Great outputs rarely come from a single prompt. Break work into steps, iterate on drafts, and AI to critique itself.</p>
+        </div>
+
+        <div class="concepts-grid two-col">
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Break into Sub-Steps</h3>
+                <p class="concept-description">Decompose big tasks into smaller, manageable steps.</p>
+                <div class="concept-example">Prompt 1: "Create an outline for a 10-slide pitch deck."<br>Prompt 2: "Write the voice track for slide 1."<br>Prompt 3: "Write the speaker notes for slide 1."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Iterate</h3>
+                <p class="concept-description">Run iterative cycles: draft → refine → repeat until satisfied.</p>
+                <div class="concept-example">Prompt 1: "Draft a 1-page proposal."<br>Prompt 2: "Rewrite it to be 20% shorter and more persuasive."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Self-Iterate</h3>
+                <p class="concept-description">Have the model critique its own output and propose improvements.</p>
+                <div class="concept-example">"1) Identify the weaknesses and missing details of your last response. 2) Rewrite incorporating your own feedback."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Draft in a Canvas</h3>
+                <p class="concept-description">Use a dedicated drafting space for long-form content to make editing easier.</p>
+                <div class="concept-example">"Write a detailed project plan in a pop-out canvas, including sections for Objectives, Scope, Timeline, and Risks."</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Thoughtful Responses + Maximum Intelligence -->
+    <section id="thinking">
+        <div class="section-header reveal">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Maximum Intelligence</h2>
+        </div>
+
+        <div class="featured-concept reveal">
+            
+            <h3 class="concept-name">Think Very Long and Hard</h3>
+            <p class="concept-description">Adding this phrase triggers extra computation on reasoning models. Use it for complex problems that require deep logical analysis.</p>
+            <div class="concept-example">"Think very long and hard and design an algorithm to allocate budget across channels under these constraints and justify your approach."</div>
+        </div>
+
+        <div class="concepts-grid two-col">
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Ask for Assumptions</h3>
+                <p class="concept-description">Require the model to explain its assumptions, reasoning steps, and approach before answering.</p>
+                <div class="concept-example">Prompt 1: "Don't answer yet. First, explain your assumptions and the method you'll use."<br>Prompt 2: "A better interest rate to use is 8%, and assume the interest is applied monthly. Now tell me the answer."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Request Multiple Options</h3>
+                <p class="concept-description">Have the model generate several options with pros and cons so you can choose.</p>
+                <div class="concept-example">"Give me 3 different positioning statements for this product, with pros and cons for each and a recommendation."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Trigger Self-Critique</h3>
+                <p class="concept-description">Ask the model to play devil's advocate and challenge its own conclusions.</p>
+                <div class="concept-example">"You just recommended Option B. Now play devil's advocate and argue why Option B might fail and what we should watch for."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Show Its Work</h3>
+                <p class="concept-description">Instruct the model to think through the problem step-by-step before responding. Especially important for non-reasoning models.</p>
+                <div class="concept-example">"Talk through your reasoning step by step before giving a final answer: Is this A/B test design statistically sound?"</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Use a Thinking Model</h3>
+                <p class="concept-description">Use a reasoning-focused model when accuracy and logical depth matter most.</p>
+                <div class="concept-example">"Analyze this legal clause for ambiguities and outline possible interpretations and risks."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Use an Instant Model</h3>
+                <p class="concept-description">Use a faster model for bulk, repetitive, or low-risk tasks.</p>
+                <div class="concept-example">"Convert this unstructured log of customer complaints into a 1000-row table with columns for 'Customer', 'Issue Category', and 'Sentiment'."</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Analysis -->
+    <section id="analysis">
+        <div class="section-header reveal">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Analysis</h2>
+        </div>
+
+        <div class="concepts-grid two-col">
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Structure Data</h3>
+                <p class="concept-description">AI can turn unstructured text into structured formats like tables or JSON.</p>
+                <div class="concept-example">"Turn the text of this web page into a markdown table with the following headers: Product Name, Price, & Description."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Reformat Data</h3>
+                <p class="concept-description">AI can intelligently refactor or reformat data to your specifications.</p>
+                <div class="concept-example">"Take all of the names and put them into Lastname, Firstname format."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Internal Analysis</h3>
+                <p class="concept-description">Using Python, AI can run calculations or generate figures and visualizations.</p>
+                <div class="concept-example">"Using our historic growth data, project when we will double in size. Plot our projected growth curve over the historic data."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">External Analysis</h3>
+                <p class="concept-description">AI can help you run analyses by generating Excel or Google Sheet formulas.</p>
+                <div class="concept-example">"Help me develop an Excel formula that will calculate the correlation coefficient between sales commission percentage and closing rate."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Internal Capabilities</h3>
+                <p class="concept-description">Using Python, AI can do simple actions: generate QR codes, convert image types, add headers to PDFs, etc.</p>
+                <div class="concept-example">"Combine these two PDFs and add page numbers to the bottom right in Arial 12pt font."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Debugging & Troubleshooting</h3>
+                <p class="concept-description">AI can walk you through complex problems if you upload screenshots, pictures, or error codes.</p>
+                <div class="concept-example">"Here is a screenshot of my computer. Where did the menu bar go, and how do I get it back?"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Prompt Library -->
+    <section id="prompts">
+        <div class="section-header reveal">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Prompt Library</h2>
+        </div>
+
+        <div class="principles reveal">
+            <div class="principle-item">
+                <span class="principle-number">1</span>
+                <div class="principle-content">
+                    <h3>Turn Chats into Reusable Prompts</h3>
+                    <p>Convert successful conversations into general, reusable prompts. Ask the AI: "Analyze this conversation and draft a reusable prompt that would recreate this kind of output for any topic."</p>
+                </div>
+            </div>
+            <div class="principle-item">
+                <span class="principle-number">2</span>
+                <div class="principle-content">
+                    <h3>Parameterize Your Prompts</h3>
+                    <p>Add variables like {{Audience}}, {{Tone}}, and {{Length}} so prompts can be reused easily across different contexts.</p>
+                </div>
+            </div>
+            <div class="principle-item">
+                <span class="principle-number">3</span>
+                <div class="principle-content">
+                    <h3>Organize a Prompt Library</h3>
+                    <p>Maintain a catalog of your best prompts by use case and domain. Build institutional knowledge over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Quality Control -->
+    <section id="quality">
+        <div class="section-header reveal">
+            <span class="section-number">08</span>
+            <h2 class="section-title">Quality Control & Verification</h2>
+        </div>
+
+                <div class="principles reveal">
+            <div class="principle-item">
+                <span class="principle-number">1</span>
+                <div class="principle-content">
+                    <h3>Add Verification Instructions</h3>
+                    <p>Explicitly tell the model to flag uncertainty or speculation.</p>
+                </div>
+            </div>
+            <div class="principle-item">
+                <span class="principle-number">2</span>
+                <div class="principle-content">
+                    <h3>Require Checkable Sources</h3>
+                    <p>Ask the AI to provide verifiable sources for factual claims. Note: Always check them - sources can be hallucinated.</p>
+                </div>
+            </div>
+            <div class="principle-item">
+                <span class="principle-number">3</span>
+                <div class="principle-content">
+                    <h3>Self-Check for Errors</h3>
+                    <p>Ask the model to check its own answers for accuracy. Reasoning models often do this automatically with "Think very long and hard."</p>
+                </div>
+            </div>
+            <div class="principle-item">
+                <span class="principle-number">4</span>
+                <div class="principle-content">
+                    <h3>Clear Chat History</h3>
+                    <p>AI can be biased by prior chat history. Start a new chat if quality seems to be decreasing.</p>
+                </div>
+            </div>
+            <div class="principle-item">
+                <span class="principle-number">5</span>
+                <div class="principle-content">
+                    <h3>Sanity-Check Math</h3>
+                    <p>Double-check all numerical and statistical output, especially when the model is not in reasoning mode.</p>
+                </div>
+            </div>
+            <div class="principle-item">
+                <span class="principle-number">6</span>
+                <div class="principle-content">
+                    <h3>Validate Data Sources</h3>
+                    <p>Confirm that inputs are accurate and well-parsed, especially from messy or OCR'd sources.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Ethics -->
+    <section id="ethics">
+        <div class="section-header reveal">
+            <span class="section-number">09</span>
+            <h2 class="section-title">Safety, Ethics & Confidentiality</h2>
+        </div>
+
+        <div class="concepts-grid two-col">
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Avoid Plagiarism</h3>
+                <p class="concept-description">AI may mimic phrasing from training data. Always edit, add original thinking, and run checks where required.</p>
+                <div class="concept-example">"Use this article as inspiration, but write an original blog post in my voice and mention 3 places where I should add personal anecdotes."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Remove Sensitive Data</h3>
+                <p class="concept-description">Avoid including personal, confidential, or regulated information unless you're in a compliant setup.</p>
+                <div class="concept-example">"Here is anonymized customer feedback (names and IDs removed). Analyze key themes and suggest product improvements."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Disclose AI Assistance</h3>
+                <p class="concept-description">Be transparent about AI involvement where compliance, ethics, or expectations require it.</p>
+                <div class="concept-example">"Disclosure: This draft was developed with AI assistance and reviewed/edited by me for accuracy, tone, and final recommendations."</div>
+            </div>
+
+            <div class="concept-card reveal">
+                <h3 class="concept-name">Don't Delegate High-Risk Decisions</h3>
+                <p class="concept-description">Use AI for analysis and options, not final calls in legal, medical, financial, or HR decisions.</p>
+                <div class="concept-example">"Summarize the pros and cons of these contract clauses and list questions I should ask my lawyer before signing."</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Ready to level up?</h2>
+        <p>Start applying these techniques in your next AI conversation. Remember: AI skills compound over time.</p>
+    </footer>
+
+    <script>
+        // Scroll-triggered reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Smooth scroll for nav links + active section highlighting
+        const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+        const pageSections = Array.from(document.querySelectorAll('section[id]'));
+
+        const setActiveNav = (id) => {
+            navLinks.forEach(link => {
+                const isActive = link.getAttribute('href') === `#${id}`;
+                link.classList.toggle('active', isActive);
+            });
+        };
+
+        const getCurrentSectionId = () => {
+            const offset = window.innerHeight * 0.3;
+            let current = pageSections[0]?.id;
+
+            pageSections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+                if (window.scrollY + offset >= sectionTop) {
+                    current = section.id;
+                }
+            });
+
+            return current;
+        };
+
+        navLinks.forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (!target) {
+                    return;
+                }
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        const refreshActiveNav = () => {
+            const currentId = getCurrentSectionId();
+            if (currentId) {
+                setActiveNav(currentId);
+            }
+        };
+
+        window.addEventListener('scroll', refreshActiveNav, { passive: true });
+        window.addEventListener('load', refreshActiveNav);
+        window.addEventListener('resize', refreshActiveNav);
+
+        // Scale each section to fit one Letter page when printing.
+        const printableSections = Array.from(document.querySelectorAll('section'));
+
+        const resetPrintSizing = () => {
+            printableSections.forEach(section => {
+                section.style.removeProperty('--print-scale');
+                section.style.removeProperty('--print-scaled-height');
+            });
+        };
+
+        const fitSectionsToPrintPage = () => {
+            resetPrintSizing();
+
+            const pageHeightPx = 10 * 96;
+            printableSections.forEach(section => {
+                const rawHeight = section.scrollHeight;
+                if (!rawHeight) {
+                    return;
+                }
+
+                const scale = Math.min(1, pageHeightPx / rawHeight);
+                section.style.setProperty('--print-scale', scale.toFixed(4));
+                section.style.setProperty('--print-scaled-height', `${Math.ceil(rawHeight * scale)}px`);
+            });
+        };
+
+        window.addEventListener('beforeprint', fitSectionsToPrintPage);
+        window.addEventListener('afterprint', resetPrintSizing);
+    </script>
+</body>
+</html>
