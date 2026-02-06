@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "Speaker Introduction",
+    "type": "Writing",
+    "icon": "writing",
+    "scenario": "You're hosting an AI event at work. The next speaker, <strong>Carlos Noyes</strong>, is about to give a talk on the importance of AI-training, but he never sent his intro. Generate an accurate, engaging introduction for him.",
+    "hints": "Use his <strong>LinkedIn profile</strong> for the needed context. Copy and paste the full profile text into your prompt so the AI has accurate, specific details to work with.",
+    "solution": {
+      "prompts": [
+        {
+          "label": "Example Prompt",
+          "text": "Context: Carlos Noyes is about to speak on the importance of AI-training.\nInstructions: Using his LinkedIn page, write a 60–90 second, energetic, accurate speaker introduction for him.\nLinkedIn Profile: [CONTEXT: Paste full LinkedIn profile text]"
+        }
+      ],
+      "note": "The key here is giving the AI <strong>specific, real context</strong> (the LinkedIn text) so it doesn't have to guess or hallucinate details. Structuring the prompt with labeled sections (Context, Instructions, LinkedIn Profile) keeps things clear."
+    },
+    "linkedConcepts": ["C0102", "C0203", "C0205"]
+  },
+  {
+    "id": 2,
+    "name": "Trade Show Planning",
+    "type": "Reasoning",
+    "icon": "reasoning",
+    "scenario": "You are part of a company (pick your own industry, e.g. business consulting). You are leading your company's trade show booth. In years past, there has been limited measurable value in this event. You are going to change that with the ambitious goal of <strong>more than 50 qualified leads</strong>. The event is in 30 days. What is your plan?",
+    "hints": "<strong>Break it up into smaller steps.</strong> Start with ideation — ask for lots of creative ideas first. Then pick your favorites and have the AI flesh those out into full, detailed plans. Don't try to get a finished plan in one prompt.",
+    "solution": {
+      "prompts": [
+        {
+          "label": "Prompt 1 — Context",
+          "text": "\"Summarize everything important about the company I work for: [copy and paste from the website]\""
+        },
+        {
+          "label": "Prompt 2 — Objective + Ideation",
+          "text": "\"I have 30 days to prepare for my company's trade show exhibit. I want to maximize acquiring qualified leads. Think very long and hard, and come up with 10 creative and effective tactics we could employ to optimize our tradeshow outcomes.\""
+        },
+        {
+          "label": "Prompt 3 — Plan",
+          "text": "\"I like ideas [x, y, and z]. Think very long and hard, and flesh out a detailed plan for each idea. Include all steps to prepare and execute each of the ideas.\""
+        }
+      ],
+      "note": "This multi-step approach — context first, then brainstorm, then deep-dive on selected ideas — produces dramatically better results than asking for \"a trade show plan\" in one shot."
+    },
+    "linkedConcepts": ["C0401", "C0203", "C0206", "C0501", "C0402"]
+  },
+  {
+    "id": 3,
+    "name": "Finalize the Table",
+    "type": "Research",
+    "icon": "research",
+    "scenario": "You are gathering data to put in a table for an important presentation. You were able to fill out most of the data from memory, but couldn't remember everything. Use AI to finalize the table — filling in gaps and checking for mistakes. <em>(Use a table of Companies and their CEOs, or similar data you have on hand.)</em>",
+    "hints": "Don't forget that <strong>AI can check for mistakes</strong>, not just fill in blanks. Ask it to look for errors in the data you already have. You can upload a screenshot or paste the table directly.",
+    "solution": {
+      "prompts": [
+        {
+          "label": "Example Prompt",
+          "text": "\"Here is a table of companies and their CEOs that I've filled in from memory. Please:\n1. Fill in any missing cells\n2. Check all existing data for accuracy and flag any errors\n3. Return the corrected table in markdown format\n\n[Paste your table here]\""
+        }
+      ],
+      "note": "The key insight is asking AI to both <strong>fill gaps</strong> and <strong>verify existing data</strong>. Many people only ask for missing info, but AI can also catch your mistakes. Always double-check factual claims — AI can hallucinate \"corrections\" too."
+    },
+    "linkedConcepts": ["C0201", "C0202", "C0801", "C0802", "C0301"]
+  },
+  {
+    "id": 4,
+    "name": "Zillow Price Data",
+    "type": "Analysis",
+    "icon": "analysis",
+    "scenario": "Go to <strong>zillow.com</strong> and find the prices and square footage of 10–20 homes near you. Ask AI to calculate the <strong>average price per square foot</strong> in your area, and find the <strong>best deals</strong> (lowest price per sqft). Have AI present this as a clean, sorted table.",
+    "hints": "<strong>Copy and paste the raw listing data</strong> (or take a screenshot) rather than typing it manually. Let AI do the structuring. Ask for a specific output format like a sorted table with a \"Price per SqFt\" column.",
+    "solution": {
+      "prompts": [
+        {
+          "label": "Prompt 1 — Structure the Data",
+          "text": "\"Here is raw data from Zillow listings near me. Please organize it into a table with columns: Address, Price, Square Footage, Price per SqFt. Sort by Price per SqFt ascending.\n\n[Paste raw Zillow data here]\""
+        },
+        {
+          "label": "Prompt 2 — Analyze",
+          "text": "\"Now calculate:\n1. The average price per square foot across all listings\n2. Highlight the top 3 best deals (lowest price/sqft)\n3. Are there any outliers that seem mispriced?\""
+        }
+      ],
+      "note": "This combines <strong>data structuring</strong> (turning messy web data into a table), <strong>analysis</strong> (calculations and sorting), and <strong>output formatting</strong> (clean table with specific columns). Breaking it into two prompts keeps each step focused."
+    },
+    "linkedConcepts": ["C0601", "C0602", "C0301", "C0603", "C0401"]
+  },
+  {
+    "id": 5,
+    "name": "Sales Prep",
+    "type": "Multiple",
+    "icon": "multiple",
+    "scenario": "You have a sales call coming up and need to prepare. Using information from your prospect's <strong>LinkedIn profile</strong>, their <strong>company website</strong>, and any <strong>notes from previous interactions</strong>, create a comprehensive <strong>Sales Call Preparation Document</strong> that includes a prospect profile, objection handling strategies, and leading questions.",
+    "hints": "<strong>Start by gathering and organizing all your raw context</strong> — LinkedIn text, website copy, meeting notes. Feed it all to AI in a structured way, then ask for synthesis. Use multiple prompts: first organize, then research, then generate the prep doc.",
+    "solution": {
+      "prompts": [
+        {
+          "label": "Prompt 1 — Organize Context",
+          "text": "I am a sales person preparing for a sales call. Here's all the information I have about my prospect:\n- Their Name: [Full name]\n- Organization: [Company name]\n- LinkedIn text: [copy/paste text from profile]\n- Transcript or notes from previous interactions: [paste here]\n- My general notes or observations: [paste/type here]\n\nPlease synthesize the prospect's information into a cohesive profile."
+        },
+        {
+          "label": "Prompt 2 — Web Research",
+          "text": "Their Website URL is: [URL]\n\nPlease search the web for recent and relevant information about this company and person. Look for:\n- Company news, leadership announcements, or funding\n- Industry trends affecting them\n- Public partnerships or press coverage\n- Any recent interviews or thought leadership content\n\nPlease add any new information to the prospect's profile."
+        },
+        {
+          "label": "Prompt 3 — Prep Brief",
+          "text": "I am a part of the [Industry] industry, selling [Product].\nThe goal of my sales call is: [e.g., Schedule a demo / Close the deal / Gather discovery info / Build rapport / etc.]\n\nThink very long and hard and create a Sales Call Preparation Document that includes:\n1) The Prospect's Profile: A concise summary of all the relevant information of my prospect from our chat history.\n2) Objection Handling: A list of potential objections that my prospect may have that considers their unique background and their unique business/industry. Please include strategic objection handling responses.\n3) Leading Questions: Generate a list of persuasive, leading questions designed to make someone recognize why they need my product or service."
+        }
+      ],
+      "note": "This is a full <strong>Human-AI Sandwich</strong> workflow: the human gathers raw inputs, the AI does heavy research and synthesis, and the human reviews the final brief. The prompts are <strong>parameterized</strong> with brackets so any rep can reuse the same template."
+    },
+    "linkedConcepts": ["C0102", "C0101", "C0201", "C0203", "C0205", "C0206", "C0301", "C0302", "C0401", "C0501", "C0506", "C0702", "C0703", "C0802", "C0902"]
+  }
+]

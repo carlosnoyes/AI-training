@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Challenges — Mastering AI Prompts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="has-sidebar">
+
+    <!-- SVG Sprite (for challenge icons) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="icon-writing" viewBox="0 0 64 64">
+            <path d="M12 52h40M16 44l-4 8h4l32-40-4-4L16 44zM36 12l4 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="icon-reasoning" viewBox="0 0 64 64">
+            <circle cx="32" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M26 36v6a6 6 0 0012 0v-6M32 48v8M28 52h8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="icon-research" viewBox="0 0 64 64">
+            <circle cx="28" cy="28" r="14" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M38 38l14 14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-analysis" viewBox="0 0 64 64">
+            <path d="M8 56V8M8 56h48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M16 44l10-12 8 8 14-20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="48" cy="20" r="3" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-multiple" viewBox="0 0 64 64">
+            <rect x="8" y="8" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+            <rect x="36" y="8" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+            <rect x="8" y="36" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+            <rect x="36" y="36" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M28 18h8M46 28v8M28 46h8M18 28v8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </symbol>
+    </svg>
+
+    <nav class="sidebar">
+        <div class="nav-header">
+            <a href="index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Main
+            </a>
+        </div>
+        <ul class="nav-list">
+            <!-- Populated by challenges.js -->
+        </ul>
+        <div class="nav-progress">
+            <div class="nav-progress-label">Progress</div>
+            <div class="nav-progress-track">
+                <div class="nav-progress-fill" id="progressFill"></div>
+            </div>
+            <div class="nav-progress-count" id="progressCount">0 / 5</div>
+        </div>
+    </nav>
+
+    <div id="challenges-content">
+        <!-- Populated by challenges.js -->
+    </div>
+
+    <script type="module" src="js/challenges.js"></script>
+</body>
+</html>

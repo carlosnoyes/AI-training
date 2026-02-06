@@ -1,0 +1,57 @@
+Category,Name,Description,Example
+General Tips,The Human-AI Sandwich,The Human does the first 10% - framing the problemThe AI does the middle 80% - the heavy liftingThe Human does the last 10% - final review and edits,Never submit something that you haven't read entirely. Let's avoid AI-slop.
+General Tips,The Parts of a Prompt,"Define a clear objective, provide context, offer motivation, explain the audience, give instructions, and specify the output format.","""You are an experienced product strategist. Summarize these meeting notes into actionable insights for non-technical executives. Output a concise bullet list focused on product and revenue topics, exclude HR, keep it under 200 words, and include action owner per bullet."""
+General Tips,Let AI Become a Natural Partner,"Like you would reach for your phone to check for directions, you should reach for AI for anything related to Writing, Reasoning, Research, and Analysis.","Using Voice Mode or Voice to Text can make AI feel more organic.
+Start AI chats immediately on your phone/watch, then continue them later from your computer."
+General Tips,AI as Skill Multiplier,AI is better at expanding your existing capabilities than giving you completely new ones. Knowing what is possible and recognizing good outputs will help you to leverage AI effectively.,"You can ask, ""Write me a sales script"". But if you cannot tell good from bad yourself, then the output is uncertain."
+General Tips,AI Skills Compound,"The more tools and techniques you know, the more creative you can be - and the more you will learn over time.","Help me research a complex topic.
+Draft a presentation outline.
+Generate images to go along the main sections.
+Create the presentation using HTML or PowerPoint."
+Context Packaging,Upload Files,"Provide original files (PDFs, CSVs, docs) so the model can pull details directly when needed.","""I've uploaded a 40-page research PDF. Use it as your only source to summarize the main findings in a one-page brief."""
+Context Packaging,Context Formats,"Share the same context in different forms — text, screenshots, pasted tables — to improve understanding.","""Here's my spreadsheet pasted as text, and here is a screenshot of the first few rows to help you understand the structure."""
+Context Packaging,Lots of Context,"When unsure what's needed, err on the side of giving more raw material: notes, transcripts, webpage dumps, screenshots.","""Here are my messy project notes and meeting transcripts. Please extract the main decisions, open questions, and owner for each action item."""
+Context Packaging,Prune Irrelevant Information,Remove obviously unrelated content so the model isn't distracted or misled by noise.,"Remove unnecessary text/data that don't contribute to the current task.
+Start a new chat when changing topics, or when there is too many distractions in the current conversation."
+Context Packaging,Structure Context,Organize inputs into labeled sections.,"""GOAL: propose a launch plan for the next 30 days.
+BACKGROUND: […]
+CONSTRAINTS: […]
+EXAMPLES: […]"
+Context Packaging,Pre-Process with AI,"First ask the model to summarize or reorganize large, messy inputs into compact, structured notes.","""Summarize these 20 pages into a concise outline.""
+Then, ""Turn that outline into a 2-page strategy memo."""
+Output Formatting & Structure,Define Output Structure,Describe the exact fields and columns you want the model to return.,"""Return a markdown table with these columns: 'Feature', 'User Segment', 'Value Proposition', 'Risk Level (Low/Med/High)'."""
+Output Formatting & Structure,Provide Examples,Show a model answer and tell the AI to follow that style and structure. Note: The model can sometimes copy examples too closely.,"""Here is an example performance review paragraph. Using this style and tone, write a review for an engineer with the following achievements: …"""
+Iteration & Refinement,Break into Sub-Steps,"Decompose big tasks into smaller, manageable steps.","Prompt 1: ""Create an outline for a 10-slide pitch deck.""
+Prompt 2: ""Write the voice track for slide 1.""
+Prompt 3: ""Write the speaker notes for slide 1."""
+Iteration & Refinement,Iterate,Run iterative cycles: draft → refine → repeat until satisfied.,"Prompt 1: ""Draft a 1-page proposal.""
+Prompt 2: ""Rewrite it to be 20% shorter and more persuasive."""
+Iteration & Refinement,Self-Iterate,Have the model critique its own output and propose improvements.,"""1) Identify the weaknesses and missing details of your last response. 2) Rewrite incorporating your own feedback."""
+Iteration & Refinement,Draft in a Canvas,Use a dedicated drafting space for long-form content to make editing easier.,"""Write a detailed project plan in a pop-out canvas, including sections for Objectives, Scope, Timeline, and Risks."""
+Maximum Intelligence,"""Think Very Long and Hard""",Adding this phrase triggers extra computation on reasoning models. Use it for complex problems that require deep logical analysis.,"""Think very long and hard and design an algorithm to allocate budget across channels under these constraints and justify your approach."""
+Maximum Intelligence,Ask for Assumptions,"Require the model to explain its assumptions, reasoning steps, and approach before answering.","Prompt 1: ""Don't answer yet. First, explain your assumptions and the method you'll use.""
+Prompt 2: ""A better interest rate to use is 8%, and assume the interest is applied monthly. Now tell me the answer."""
+Maximum Intelligence,Request Multiple Options,Have the model generate several options with pros and cons so you can choose.,"""Give me 3 different positioning statements for this product, with pros and cons for each and a recommendation."""
+Maximum Intelligence,Trigger Self-Critique,Ask the model to play devil's advocate and challenge its own conclusions.,"""You just recommended Option B. Now play devil's advocate and argue why Option B might fail and what we should watch for."""
+Maximum Intelligence,Show Its Work,Instruct the model to think through the problem step-by-step before responding. Especially important for non-reasoning models.,"""Talk through your reasoning step by step before giving a final answer: Is this A/B test design statistically sound?"""
+Maximum Intelligence,Use a Thinking Model,Use a reasoning-focused model when accuracy and logical depth matter most.,"""Analyze this legal clause for ambiguities and outline possible interpretations and risks."""
+Maximum Intelligence,Use an Instant Model,"Use a faster model for bulk, repetitive, or low-risk tasks.","""Convert this unstructured log of customer complaints into a 1000-row table with columns for 'Customer', 'Issue Category', and 'Sentiment'."""
+Analysis,Structure Data,AI can turn unstructured text into structured formats like tables or JSON.,"""Turn the text of this web page into a markdown table with the following headers: Product Name, Price, & Description."""
+Analysis,Reformat Data,AI can intelligently refactor or reformat data to your specifications.,"""Take all of the names and put them into Lastname, Firstname format."""
+Analysis,Internal Analysis,"Using Python, AI can run calculations or generate figures and visualizations.","""Using our historic growth data, project when we will double in size. Plot our projected growth curve over the historic data."""
+Analysis,External Analysis,AI can help you run analyses by generating Excel or Google Sheet formulas.,"""Help me develop an Excel formula that will calculate the correlation coefficient between sales commission percentage and closing rate."""
+Analysis,Internal Capabilities,"Using Python, AI can do simple actions: generate QR codes, convert image types, add headers to PDFs, etc.","""Combine these two PDFs and add page numbers to the bottom right in Arial 12pt font."""
+Analysis,Debugging & Troubleshooting,"AI can walk you through complex problems if you upload screenshots, pictures, or error codes.","""Here is a screenshot of my computer. Where did the menu bar go, and how do I get it back?"""
+Prompt Library,Turn Chats into Reusable Prompts,"Convert successful conversations into general, reusable prompts. Ask the AI: ""Analyze this conversation and draft a reusable prompt that would recreate this kind of output for any topic.""",
+Prompt Library,Parameterize Your Prompts,"Add variables like {{Audience}}, {{Tone}}, and {{Length}} so prompts can be reused easily across different contexts.",
+Prompt Library,Organize a Prompt Library,Maintain a catalog of your best prompts by use case and domain. Build institutional knowledge over time.,
+Quality Control & Verification,Beware of Hallucinations,"AI models can confidently produce incorrect information, including invented facts, fake citations, non-existent URLs, or fabricated statistics. More advanced models include techniques to reduce this behavior, so risk varies by model, but human judgment remains essential.","With experience, you'll get better at recognizing where hallucinations are most likely and when extra scrutiny is needed."
+Quality Control & Verification,Require Checkable Sources,Ask the AI to provide verifiable sources for factual claims. Note: Always check them - sources can be hallucinated.,
+Quality Control & Verification,Have the AI Check for Errors,"Ask the model to check its own answers for accuracy. Reasoning models often do this automatically with ""Think very long and hard.""",
+Quality Control & Verification,Sanity-Check Math,"Double-check all numerical and statistical output, especially when the model is not in reasoning mode.",
+Quality Control & Verification,Validate Data Inputs,"Confirm that inputs are accurate and well-parsed, especially from PDFs and images.",
+Quality Control & Verification,Clear Chat History,AI can be biased by prior chat history. Start a new chat if quality seems to be decreasing.,
+"Safety, Ethics & Confidentiality",Avoid Plagiarism,"AI may mimic phrasing from training data. Always edit, add original thinking, and run checks where required.",
+"Safety, Ethics & Confidentiality",Remove Sensitive Data,"Avoid including personal, confidential, or regulated information unless you're in a compliant setup.",
+"Safety, Ethics & Confidentiality",Disclose AI Assistance,"Be transparent about AI involvement where compliance, ethics, or expectations require it.",
+"Safety, Ethics & Confidentiality",Don't Delegate High-Risk Decisions,"Use AI for analysis and options, not final calls in legal, medical, financial, or HR decisions.",

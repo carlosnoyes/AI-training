@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- Writing icon -->
+  <symbol id="icon-writing" viewBox="0 0 64 64">
+    <path d="M12 52h40M16 44l-4 8h4l32-40-4-4L16 44zM36 12l4 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Reasoning icon -->
+  <symbol id="icon-reasoning" viewBox="0 0 64 64">
+    <circle cx="32" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M26 36v6a6 6 0 0012 0v-6M32 48v8M28 52h8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Research icon -->
+  <symbol id="icon-research" viewBox="0 0 64 64">
+    <circle cx="28" cy="28" r="14" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M38 38l14 14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <!-- Analysis icon -->
+  <symbol id="icon-analysis" viewBox="0 0 64 64">
+    <path d="M8 56V8M8 56h48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <path d="M16 44l10-12 8 8 14-20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="48" cy="20" r="3" fill="currentColor"/>
+  </symbol>
+  <!-- Multiple/combo icon -->
+  <symbol id="icon-multiple" viewBox="0 0 64 64">
+    <rect x="8" y="8" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+    <rect x="36" y="8" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+    <rect x="8" y="36" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+    <rect x="36" y="36" width="20" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M28 18h8M46 28v8M28 46h8M18 28v8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+  <!-- Hint lightbulb icon -->
+  <symbol id="icon-hint" viewBox="0 0 24 24">
+    <circle cx="12" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M10 16v2a2 2 0 004 0v-2M9 20h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M12 4V2M4 10H2M22 10h-2M6 4l1.5 1.5M18 4l-1.5 1.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <!-- Lock/solution icon -->
+  <symbol id="icon-lock" viewBox="0 0 24 24">
+    <rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M8 11V7a4 4 0 018 0v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+  </symbol>
+  <!-- Concepts/link icon -->
+  <symbol id="icon-concepts" viewBox="0 0 24 24">
+    <path d="M10 14l-2 2a3 3 0 004.24 0l2-2a3 3 0 000-4.24M14 10l2-2a3 3 0 00-4.24 0l-2 2a3 3 0 000 4.24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+</svg>

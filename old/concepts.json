@@ -1,0 +1,346 @@
+[
+  {
+    "concept_id": "C0101",
+    "category": "General Tips",
+    "name": "The Human-AI Sandwich",
+    "description": "The Human does the first 10% - framing the problemThe AI does the middle 80% - the heavy liftingThe Human does the last 10% - final review and edits",
+    "example": "Never submit something that you haven't read entirely. Let's avoid AI-slop.",
+    "style": "bold"
+  },
+  {
+    "concept_id": "C0102",
+    "category": "General Tips",
+    "name": "The Parts of a Prompt",
+    "description": "Define a clear objective, provide context, offer motivation, explain the audience, give instructions, and specify the output format.",
+    "example": "\"You are an experienced product strategist. Summarize these meeting notes into actionable insights for non-technical executives. Output a concise bullet list focused on product and revenue topics, exclude HR, keep it under 200 words, and include action owner per bullet.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0103",
+    "category": "General Tips",
+    "name": "Let AI Become a Natural Partner",
+    "description": "Like you would reach for your phone to check for directions, you should reach for AI for anything related to Writing, Reasoning, Research, and Analysis.",
+    "example": "Using Voice Mode or Voice to Text can make AI feel more organic.\nStart AI chats immediately on your phone/watch, then continue them later from your computer.",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0104",
+    "category": "General Tips",
+    "name": "AI as Skill Multiplier",
+    "description": "AI is better at expanding your existing capabilities than giving you completely new ones. Knowing what is possible and recognizing good outputs will help you to leverage AI effectively.",
+    "example": "You can ask, \"Write me a sales script\". But if you cannot tell good from bad yourself, then the output is uncertain.",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0105",
+    "category": "General Tips",
+    "name": "AI Skills Compound",
+    "description": "The more tools and techniques you know, the more creative you can be - and the more you will learn over time.",
+    "example": "Help me research a complex topic.\nDraft a presentation outline.\nGenerate images to go along the main sections.\nCreate the presentation using HTML or PowerPoint.",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0201",
+    "category": "Context Packaging",
+    "name": "Upload Files",
+    "description": "Provide original files (PDFs, CSVs, docs) so the model can pull details directly when needed.",
+    "example": "\"I've uploaded a 40-page research PDF. Use it as your only source to summarize the main findings in a one-page brief.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0202",
+    "category": "Context Packaging",
+    "name": "Context Formats",
+    "description": "Share the same context in different forms — text, screenshots, pasted tables — to improve understanding.",
+    "example": "\"Here's my spreadsheet pasted as text, and here is a screenshot of the first few rows to help you understand the structure.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0203",
+    "category": "Context Packaging",
+    "name": "Lots of Context",
+    "description": "When unsure what's needed, err on the side of giving more raw material: notes, transcripts, webpage dumps, screenshots.",
+    "example": "\"Here are my messy project notes and meeting transcripts. Please extract the main decisions, open questions, and owner for each action item.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0204",
+    "category": "Context Packaging",
+    "name": "Prune Irrelevant Information",
+    "description": "Remove obviously unrelated content so the model isn't distracted or misled by noise.",
+    "example": "Remove unnecessary text/data that don't contribute to the current task.\nStart a new chat when changing topics, or when there is too many distractions in the current conversation.",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0205",
+    "category": "Context Packaging",
+    "name": "Structure Context",
+    "description": "Organize inputs into labeled sections.",
+    "example": "\"GOAL: propose a launch plan for the next 30 days.\nBACKGROUND: […]\nCONSTRAINTS: […]\nEXAMPLES: […]",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0206",
+    "category": "Context Packaging",
+    "name": "Pre-Process with AI",
+    "description": "First ask the model to summarize or reorganize large, messy inputs into compact, structured notes.",
+    "example": "\"Summarize these 20 pages into a concise outline.\"\nThen, \"Turn that outline into a 2-page strategy memo.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0301",
+    "category": "Output Formatting & Structure",
+    "name": "Define Output Structure",
+    "description": "Describe the exact fields and columns you want the model to return.",
+    "example": "\"Return a markdown table with these columns: 'Feature', 'User Segment', 'Value Proposition', 'Risk Level (Low/Med/High)'.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0302",
+    "category": "Output Formatting & Structure",
+    "name": "Provide Examples",
+    "description": "Show a model answer and tell the AI to follow that style and structure. Note: The model can sometimes copy examples too closely.",
+    "example": "\"Here is an example performance review paragraph. Using this style and tone, write a review for an engineer with the following achievements: …\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0401",
+    "category": "Iteration & Refinement",
+    "name": "Break into Sub-Steps",
+    "description": "Decompose big tasks into smaller, manageable steps.",
+    "example": "Prompt 1: \"Create an outline for a 10-slide pitch deck.\"\nPrompt 2: \"Write the voice track for slide 1.\"\nPrompt 3: \"Write the speaker notes for slide 1.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0402",
+    "category": "Iteration & Refinement",
+    "name": "Iterate",
+    "description": "Run iterative cycles: draft → refine → repeat until satisfied.",
+    "example": "Prompt 1: \"Draft a 1-page proposal.\"\nPrompt 2: \"Rewrite it to be 20% shorter and more persuasive.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0403",
+    "category": "Iteration & Refinement",
+    "name": "Self-Iterate",
+    "description": "Have the model critique its own output and propose improvements.",
+    "example": "\"1) Identify the weaknesses and missing details of your last response. 2) Rewrite incorporating your own feedback.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0404",
+    "category": "Iteration & Refinement",
+    "name": "Draft in a Canvas",
+    "description": "Use a dedicated drafting space for long-form content to make editing easier.",
+    "example": "\"Write a detailed project plan in a pop-out canvas, including sections for Objectives, Scope, Timeline, and Risks.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0501",
+    "category": "Maximum Intelligence",
+    "name": "\"Think Very Long and Hard\"",
+    "description": "Adding this phrase triggers extra computation on reasoning models. Use it for complex problems that require deep logical analysis.",
+    "example": "\"Think very long and hard and design an algorithm to allocate budget across channels under these constraints and justify your approach.\"",
+    "style": "bold"
+  },
+  {
+    "concept_id": "C0502",
+    "category": "Maximum Intelligence",
+    "name": "Ask for Assumptions",
+    "description": "Require the model to explain its assumptions, reasoning steps, and approach before answering.",
+    "example": "Prompt 1: \"Don't answer yet. First, explain your assumptions and the method you'll use.\"\nPrompt 2: \"A better interest rate to use is 8%, and assume the interest is applied monthly. Now tell me the answer.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0503",
+    "category": "Maximum Intelligence",
+    "name": "Request Multiple Options",
+    "description": "Have the model generate several options with pros and cons so you can choose.",
+    "example": "\"Give me 3 different positioning statements for this product, with pros and cons for each and a recommendation.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0504",
+    "category": "Maximum Intelligence",
+    "name": "Trigger Self-Critique",
+    "description": "Ask the model to play devil's advocate and challenge its own conclusions.",
+    "example": "\"You just recommended Option B. Now play devil's advocate and argue why Option B might fail and what we should watch for.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0505",
+    "category": "Maximum Intelligence",
+    "name": "Show Its Work",
+    "description": "Instruct the model to think through the problem step-by-step before responding. Especially important for non-reasoning models.",
+    "example": "\"Talk through your reasoning step by step before giving a final answer: Is this A/B test design statistically sound?\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0506",
+    "category": "Maximum Intelligence",
+    "name": "Use a Thinking Model",
+    "description": "Use a reasoning-focused model when accuracy and logical depth matter most.",
+    "example": "\"Analyze this legal clause for ambiguities and outline possible interpretations and risks.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0507",
+    "category": "Maximum Intelligence",
+    "name": "Use an Instant Model",
+    "description": "Use a faster model for bulk, repetitive, or low-risk tasks.",
+    "example": "\"Convert this unstructured log of customer complaints into a 1000-row table with columns for 'Customer', 'Issue Category', and 'Sentiment'.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0601",
+    "category": "Analysis",
+    "name": "Structure Data",
+    "description": "AI can turn unstructured text into structured formats like tables or JSON.",
+    "example": "\"Turn the text of this web page into a markdown table with the following headers: Product Name, Price, & Description.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0602",
+    "category": "Analysis",
+    "name": "Reformat Data",
+    "description": "AI can intelligently refactor or reformat data to your specifications.",
+    "example": "\"Take all of the names and put them into Lastname, Firstname format.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0603",
+    "category": "Analysis",
+    "name": "Internal Analysis",
+    "description": "Using Python, AI can run calculations or generate figures and visualizations.",
+    "example": "\"Using our historic growth data, project when we will double in size. Plot our projected growth curve over the historic data.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0604",
+    "category": "Analysis",
+    "name": "External Analysis",
+    "description": "AI can help you run analyses by generating Excel or Google Sheet formulas.",
+    "example": "\"Help me develop an Excel formula that will calculate the correlation coefficient between sales commission percentage and closing rate.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0605",
+    "category": "Analysis",
+    "name": "Internal Capabilities",
+    "description": "Using Python, AI can do simple actions: generate QR codes, convert image types, add headers to PDFs, etc.",
+    "example": "\"Combine these two PDFs and add page numbers to the bottom right in Arial 12pt font.\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0606",
+    "category": "Analysis",
+    "name": "Debugging & Troubleshooting",
+    "description": "AI can walk you through complex problems if you upload screenshots, pictures, or error codes.",
+    "example": "\"Here is a screenshot of my computer. Where did the menu bar go, and how do I get it back?\"",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0701",
+    "category": "Prompt Library",
+    "name": "Turn Chats into Reusable Prompts",
+    "description": "Convert successful conversations into general, reusable prompts. Ask the AI: \"Analyze this conversation and draft a reusable prompt that would recreate this kind of output for any topic.\"",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0702",
+    "category": "Prompt Library",
+    "name": "Parameterize Your Prompts",
+    "description": "Add variables like {{Audience}}, {{Tone}}, and {{Length}} so prompts can be reused easily across different contexts.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0703",
+    "category": "Prompt Library",
+    "name": "Organize a Prompt Library",
+    "description": "Maintain a catalog of your best prompts by use case and domain. Build institutional knowledge over time.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0801",
+    "category": "Quality Control & Verification",
+    "name": "Beware of Hallucinations",
+    "description": "AI models can confidently produce incorrect information, including invented facts, fake citations, non-existent URLs, or fabricated statistics. More advanced models include techniques to reduce this behavior, so risk varies by model, but human judgment remains essential.",
+    "example": "With experience, you'll get better at recognizing where hallucinations are most likely and when extra scrutiny is needed.",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0802",
+    "category": "Quality Control & Verification",
+    "name": "Require Checkable Sources",
+    "description": "Ask the AI to provide verifiable sources for factual claims. Note: Always check them - sources can be hallucinated.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0803",
+    "category": "Quality Control & Verification",
+    "name": "Have the AI Check for Errors",
+    "description": "Ask the model to check its own answers for accuracy. Reasoning models often do this automatically with \"Think very long and hard.\"",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0804",
+    "category": "Quality Control & Verification",
+    "name": "Sanity-Check Math",
+    "description": "Double-check all numerical and statistical output, especially when the model is not in reasoning mode.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0805",
+    "category": "Quality Control & Verification",
+    "name": "Validate Data Inputs",
+    "description": "Confirm that inputs are accurate and well-parsed, especially from PDFs and images.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0806",
+    "category": "Quality Control & Verification",
+    "name": "Clear Chat History",
+    "description": "AI can be biased by prior chat history. Start a new chat if quality seems to be decreasing.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0901",
+    "category": "Safety, Ethics & Confidentiality",
+    "name": "Avoid Plagiarism",
+    "description": "AI may mimic phrasing from training data. Always edit, add original thinking, and run checks where required.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0902",
+    "category": "Safety, Ethics & Confidentiality",
+    "name": "Remove Sensitive Data",
+    "description": "Avoid including personal, confidential, or regulated information unless you're in a compliant setup.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0903",
+    "category": "Safety, Ethics & Confidentiality",
+    "name": "Disclose AI Assistance",
+    "description": "Be transparent about AI involvement where compliance, ethics, or expectations require it.",
+    "example": "",
+    "style": "standard"
+  },
+  {
+    "concept_id": "C0904",
+    "category": "Safety, Ethics & Confidentiality",
+    "name": "Don't Delegate High-Risk Decisions",
+    "description": "Use AI for analysis and options, not final calls in legal, medical, financial, or HR decisions.",
+    "example": "",
+    "style": "standard"
+  }
+]
