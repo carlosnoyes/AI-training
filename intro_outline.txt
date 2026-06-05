@@ -1,0 +1,200 @@
+Intro Slide 1 — Lesson 1: What Can AI Do?
+
+Slide title:
+What Can AI Do? (The 3 Core Capabilities)
+
+A) Generation
+
+AI is extremely good at producing content once you give it direction.
+
+Examples:
+
+Text: emails, reports, summaries, scripts, documentation
+
+Visuals: images, diagrams, slide drafts
+
+Code: scripts, formulas, automations
+
+Audio/video: transcripts, voiceovers, summaries
+
+Key idea to emphasize verbally:
+
+AI doesn’t replace creativity — it removes the blank page.
+
+This is the most obvious use case, and where most people start.
+
+B) Thinking
+
+Modern AI models can reason, not just generate.
+
+What this looks like in practice:
+
+Breaking problems into steps
+
+Comparing tradeoffs
+
+Creating plans and strategies
+
+Debugging logic and spotting inconsistencies
+
+Important nuance:
+
+Some models are optimized for speed and formatting
+
+Others are optimized for reasoning and analysis
+
+You often get better results when you guide the thinking process
+
+Key framing line:
+
+AI works best when you don’t ask for the answer — you ask it to think with you.
+
+C) Agents
+
+AI can now take action, not just give advice.
+
+Examples:
+
+Multi-step workflows (research → summarize → act)
+
+Monitoring systems (check, decide, notify)
+
+Tool use (search, write, schedule, update docs)
+
+Semi-autonomous task execution
+
+Mental model:
+
+Think “junior analyst + intern + automation,” all rolled into one.
+
+This is where AI moves from helpful to transformational.
+
+Intro Slide 2 — Lesson 2: Prompt Engineering
+
+Slide title:
+Prompt Engineering: How to Work With AI Effectively
+
+A) How to Start
+
+The simplest and best advice:
+
+Start by talking to AI like you would a capable person.
+
+You don’t need special syntax to begin:
+
+Explain what you’re trying to do
+
+Share what you know
+
+Ask for help
+
+You can always refine later. Most people overthink prompts too early.
+
+B) The Parts of a Well-Structured Prompt
+
+As prompts get more important, structure starts to matter.
+
+Most strong prompts include some combination of:
+
+Context — background information, documents, screenshots
+
+Objective — what “good” looks like
+
+Audience — who the output is for
+
+Instructions — how to approach the task
+
+Constraints — length, tone, format, exclusions
+
+Output format — bullets, tables, steps, etc.
+
+Key takeaway:
+
+The better you set the stage, the better the performance.
+
+C) Tips & Tricks
+
+A few high-leverage habits:
+
+Give the model easy access to context (copy/paste beats paraphrasing)
+
+Break big tasks into stages
+
+Iterate instead of expecting perfection on the first try
+
+Use phrases like “Think very long and hard” on complex tasks
+
+Ask it to summarize or restate context to confirm understanding
+
+Prompting is less about clever wording and more about clear communication.
+
+Intro Slide 3 — Lesson 3: Safety, Security, and Quality Control
+
+Slide title:
+Safety & Quality: Using AI Responsibly
+
+A) Hallucinations
+
+AI can confidently produce incorrect information.
+
+Common failure modes:
+
+Invented facts
+
+Outdated data
+
+Confident answers to vague or niche questions
+
+Key insight:
+
+The more you use AI, the better you get at spotting when skepticism is required.
+
+More advanced models reduce this risk, but it never goes to zero.
+
+B) Data Security
+
+Assume anything you paste could be stored or reviewed.
+
+Best practices:
+
+Don’t paste confidential, regulated, or proprietary data unless approved
+
+Be especially careful with:
+
+Client data
+
+Financials
+
+Internal strategy docs
+
+Use enterprise or approved tools when available
+
+Rule of thumb:
+
+If you wouldn’t email it externally, think twice before pasting it.
+
+C) Quality Control & AI-Slop
+
+AI makes it easy to produce a lot of content — not all of it good.
+
+Risks:
+
+Polished but shallow writing
+
+Generic outputs
+
+Over-automation without review
+
+Countermeasures:
+
+Always do the final human pass
+
+Spot-check facts and logic
+
+Prefer structured outputs over long prose
+
+Treat AI like an assistant, not an authority
+
+Final framing line:
+
+AI accelerates output — humans are still responsible for quality.

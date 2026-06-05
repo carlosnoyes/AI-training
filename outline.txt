@@ -1,0 +1,107 @@
+15-slide deck outline (3 slides per challenge)
+Challenge 1 — Writing: Speaker Introduction
+Slide 1 (Scenario + hidden hints) — “Speaker Intro: Save the Event”
+Scenario (visible): You’re hosting an AI event at work. The next speaker, Carlos Noyes, is about to give a talk on the importance of AI-training—but he never sent his intro. Generate an accurate, engaging introduction for him.
+Hints (reveal on click): 
+The AI doesn’t know much about Carlos Noyes. What is the best way to tell it?
+Try using his LinkedIn profile as context for the AI. 
+Slide 2 (Solution) — “Prompt Template: Intro Generator”
+Bad Solution “Write me a speaker introduction for Carlos Noyes”
+Good Solution (display as a block):
+Context: Carlos Noyes is about to speak on the importance of AI-training.
+Instructions: Using his LinkedIn page, write a 60–90 second speaker introduction for him.
+LinkedIn Profile: [Paste full LinkedIn profile text]
+Show results from both
+Slide 3 (Lesson) — “Writing Quality = Prompt + Context Quality”
+Great writing outputs come from clear objectives + audience + constraints + structure.
+Raw context dumps are easy and often effective. Try giving the model the easiest source of context first and refine if it doesn't appear to be using it well. 
+The core skill: equip the model. Much like you would have to set up an intern/assistant for success, you need to equip your AI too.
+
+Challenge 2 — Reasoning: Trade Show Planning
+Slide 4 (Scenario + hidden hints) — “Trade Show Turnaround: 50 Qualified Leads”
+Scenario (visible): You lead your company’s annual trade show booth. Historically, the value from this event has been limited and hard to measure. The trade show is in 30 days, you want it to result in 50+ qualified leads. What’s your plan?
+Hints (reveal on click): 
+Remember to give the AI relevant background and context to perform this task.
+Break into sub-steps. Start broad (ideation), then select and deepen. Iterate rather than asking once.
+Consider adding the phrase “Think very long and hard”, to your instructions to increase the quality of your output.
+Slide 5 (Solution) — “Prompt Chain: Context → Ideas → Full Plans”
+Prompt 1 (Context): “Summarize everything important about the company I work for: [paste website text]”
+Prompt 2 (Ideation): “I have 30 days to prepare for a trade show to maximize qualified leads. Generate 10 creative tactics that I could employ this year.”
+Prompt 3 (Planning): “I like ideas X/Y/Z. Think very long and hard and create a detailed plan for each: prep steps, execution steps, materials, staffing, cost breakdown, etc.”
+Slide 6 (Lesson) — “AI for Strategy: Decompose + Iterate”
+Treat AI as a strategic partner: it’s strongest when you guide it through stages.
+The technique: decomposition (context → ideation → selection → execution) + iteration (improve with each prompt).
+When offering large amounts of unstructured context (e.g., a dump from a webpage), ask it to summarize the context first. This allows there to be a condensed well structured version of the same information saved in the chat history that the AI has access to for future use. 
+Use “Think very long and hard” to encourage deeper reasoning. This can often improve the quality of difficult tasks. It only works if you are using a “reasoning” model. But they are becoming the standard.
+
+Challenge 3 — Research: Finalize the Table
+(place holder image of a table)
+Slide 7 (Scenario + hidden hints) — “Finalize the Table: Fill Gaps + Fix Errors”
+Scenario (visible): You are building a table for an important presentation. You filled most entries from memory but. Use AI to finalize it.
+Hints (reveal on click): 
+Use a screenshot of the table to avoid re-typing the entire table.
+Tell the model to check itself.
+Add “Think very long and hard” on complicated tasks like this.
+Slide 8 (Solution) — “Single Prompt: Complete + Self-Verify”
+Prompt (display as a block):
+“Think very long and hard.
+Fill in any missing data.
+Check for mistakes and correct any that you find.”
+[CONTEXT: Upload a screenshot or picture of the table]
+Slide 9 (Lesson) — “Research Acceleration Requires Verification”
+AI can provide general and publicly accessible information.
+If may fail if the answers have changed recently, get around this by adding the words “Do a web search for up to date information”
+If the information is too niche it is more likely to hallucinate (e.g. which car brand has sold to the most US presidents?). When possible give it a method to find the information, e.g. “most of the data can be found somewhere in this report”
+If it is trying to do too much at a time it is more likely to make mistakes (or miss noticing some). Break it up and/or add “Think very long and hard” to increase its capacity and intelligence. 
+Two key techniques: multimodal context (screenshots help) + explicit self-check instructions.
+Get familiar with the strengths and limitations of AI, so you can offer appropriate skepticism. This will come with time (and change as models improve).
+
+Challenge 4 — Analysis: Zillow Price Data
+Slide 10 (Scenario + hidden hints) — “Is the Renovation Worth It?”
+Scenario (visible): You’re selling your house (2bd/1ba). You might add 1 bed + 1 bath. You want an average price per sqft in your zip code for 2bd/1ba and 3bd/2ba using Zillow data.
+Hints (reveal on click): 
+AI can structure messy data (e.g. if it is copied and pasted from a web page)
+Excel/sheets is great for running calculations if you know how to generate the right equations.
+Try different models, if you are running into issues.
+Slide 11 (Solution) — “Workflow: Extract → Table → Sheets Formulas”
+Step 1 (AI): “Put the following into a table with headers: price, sqft, bd, ba: [paste Zillow text]”
+Step 2 (Repeat): Do for each page/listing batch.
+Step 3 (Sheets): Ask AI for formulas:
+I pasted the table into Google Sheets. Can you give me the formula I would need to calculate the average price/sqft off all the 2bd/1ba homes?
+And now the one I would need for the 3bd/2ba homes?
+Slide 12 (Lesson) — “AI Bridges Messy Data → Real Analysis”
+AI is great at structuring and reformatting messy text into usable tables.
+In some circumstances instant models, when available, may out perform reasoning models. This is typically true for long monotonous tasks like reformatting data, where reasoning models automatically reduce the scope of the task to save on computation. 
+The AI model may just return an answer without showing its work. That is a little like a student doing long division in their head instead of on paper.
+If it is a reasoning model, and you see it, “Thinking…” or “Analysing…” then it is much more reliable, because it is running a calculation in the background, however still be careful if you don’t how it came to that answer
+The best practice is to do computations in transparent tools (Sheets/Excel/Python) so results are auditable. However, as you get more used to the AI’s strengths and limits, you will learn when to have more or less trust in the internal calculations. 
+
+Challenge 5 — Multiple: Sales Call Research & Prep Brief
+Slide 13 (Scenario + hidden hints) — “Standardize Sales Prep with AI”
+Scenario (visible): Your sales team’s pre-call research is inconsistent. Build a repeatable ChatGPT prompt flow that organizes internal info, pulls relevant web context, and produces a skimmable prep brief.
+Hints (reveal on click): 
+What sources of relevant information do you have?
+What is an easy to follow process for the user to provide that to the AI?
+Most AI’s can do some amount of web searching to gather more information.
+What would be helpful information for a sales person to review?
+Slide 14 (Solution) — “3-Prompt Flow: Profile → Web → Brief”
+Prompt 1 (Internal Synthesis): 
+Please summarize everything of relevance from a potential sales lead of mine: 
+His LinkedIn Page Text: [paste raw LinkedIn Page]
+His Companies Web Page: [paste web page]
+Notes I have on him: [any notes you have]
+
+Prompt 2 (Web Research): Think very long and hard, and search the web for any relevant information (leadership, funding, trends, partnerships, interviews, etc.) related to my lead or his company.
+Prompt 3 (Generate Guide)
+(Optional but powerful) Here is a template sales script for you to update. [upload a pre-developed script]
+I am a sales person with [your company name], trying to sell [product/service].
+Think very long and hard and create a ‘Sales Call Preparation Guide’ that includes:
+A) The Prospect’s Profile: A concise summary of all the relevant information of the prospect from the chat history.
+B) Objection Handling: A list of potential objections that the prospect may have that considers their unique background and their unique business/industry. Please include strategic objection handling responses.
+C) Leading Questions: Generate a list of persuasive, leading questions designed to make the prospect recognize why they need the product or service.
+Slide 15 (Lesson) — “From One-Off Prompts to Repeatable Workflows”
+This is how you scale AI value throughout your team/organization.
+Find high value use cases (e.g. increasing sales convergence, etc.)
+Try to solve it by applying as many techniques as are needed.
+Iterate on the solution until you are happy with the quality and consistency of the process output.
+Codify it as the new procedure and train your team on how to follow it.
